@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     // NOTE: If you choose another crop/scale option, then you must also
     // change how the BoundingBox objects get scaled when they are drawn.
     // Currently they assume the full input image is used.
-    request.imageCropAndScaleOption = .scaleFill
+    request.imageCropAndScaleOption = VNImageCropAndScaleOptionScaleFill
   }
 
   func setUpCamera() {
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
     let sx = CGFloat(YOLO.inputWidth) / CGFloat(CVPixelBufferGetWidth(pixelBuffer))
     let sy = CGFloat(YOLO.inputHeight) / CGFloat(CVPixelBufferGetHeight(pixelBuffer))
     let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)
-    let scaledImage = ciImage.transformed(by: scaleTransform)
+    let scaledImage =  ciImage.applying(scaleTransform)
     ciContext.render(scaledImage, to: resizedPixelBuffer)
 
     // This is an alternative way to resize the image (using vImage):
