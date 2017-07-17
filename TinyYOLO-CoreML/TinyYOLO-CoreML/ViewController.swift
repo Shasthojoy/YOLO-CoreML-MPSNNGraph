@@ -252,8 +252,8 @@ extension ViewController: VideoCaptureDelegate {
       // instead of on the VideoCapture queue. We use the semaphore to block
       // the capture queue and drop frames when Core ML can't keep up.
       DispatchQueue.global().async {
-        //self.predict(pixelBuffer: pixelBuffer)
-        self.predictUsingVision(pixelBuffer: pixelBuffer)
+        self.predict(pixelBuffer: pixelBuffer)
+//        self.predictUsingVision(pixelBuffer: pixelBuffer)
       }
     }
   }
